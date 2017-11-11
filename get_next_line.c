@@ -14,6 +14,23 @@
 
 int		get_next_line(const int fd, char **line)
 {
-	
-	return (0);
+	static int	i;
+	int			ret;
+
+	ret = 0;
+	while ((ret = read(fd, )))
+	return ();
+}
+
+int		main(int ac, char **av)
+{
+	int fd;
+	char *str;
+
+	if (ac == 2)
+	{
+		fd = open(av[1], RD_ONLY);
+	}
+	get_next_line(fd, &str);
+	retunr (0);
 }
