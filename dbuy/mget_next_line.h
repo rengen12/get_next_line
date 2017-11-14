@@ -16,12 +16,6 @@
 # include "libft/libft.h"
 # define BUFF_SIZE 8
 
-typedef struct	s_nxtl
-{
-	char		*rem;
-	int			fd;
-}				t_nxtl;
-
 int		get_next_line(const int fd, char **line);
 
 #endif

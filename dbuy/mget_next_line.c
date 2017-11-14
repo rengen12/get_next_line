@@ -16,12 +16,10 @@
 char	*ft_realloc(char *str)
 {
 	char	*tmp;
-	size_t		n;
+	int		n;
 
 	n = ft_strlen(str);
-	//ft_putendl("INPUT");
-	//ft_putendl(str);
-	if (!(tmp = (char *)malloc((n + BUFF_SIZE + 1))))
+	if (!(tmp = (char *)malloc(sizeof(char) * (n + BUFF_SIZE + 1))))
 		return (NULL);
 	ft_bzero(tmp, n + 1 + BUFF_SIZE);
 	ft_memmove(tmp, str, n);
@@ -29,59 +27,46 @@ char	*ft_realloc(char *str)
 	return (tmp);
 }
 
-void	addfile(int fd, char **line, t_nxtl files)
-{
-	size_t	i;
-	size_t	size;
-
-	i = 0;
-	files.fd = fd;
-	size = ft_strlen(line[0]);
-	files.rem = ft_strsub(line[0], size + 1, ft_strlen(line[0] + size + 1));
-	// ft_putendl("line:");
-	// ft_putendl(line[0]);
-	// ft_putendl("fd:");
-	// ft_putnbr(files.fd);
-	// ft_putendl("");
-	// ft_putendl("rem:");
-	// ft_putendl(files.rem);
-}
-
 int		get_next_line(const int fd, char **line)
 {
-	size_t			i;
-	static t_nxtl	files;
+	int	i;
+	int			ret;
+	int size;
+	char ch;
 
-	if (fd < 0 || !line)
-		return (-1);
+	size = BUFF_SIZE;
+	i = 0;
 	if (!line[0])
-		if (!(line[0] = (char *)malloc(BUFF_SIZE + 1)))
+		if (!(line[0] = (char *)malloc(sizeof(char) * (BUFF_SIZE + 1))))
 			return (-1);
 	ft_bzero(line[0], BUFF_SIZE + 1);
-	i = 0;
-	while (read(fd, line[0], BUFF_SIZE) > 0)
+	//write(1, "2\n", 2);
+	while ((ret = read(fd, &ch, 1)) > 0)
 	{
-		ft_putendl("after read");
-		ft_putendl(line[0]);
-		while (i < BUFF_SIZE)
+		line
+		if (line[0][i] == '\n')
 		{
-			ft_putendl("in while");
-			if (line[0][i] == '\n')
-			{
-				ft_putendl("BEFORE addfile");
-				ft_putendl(line[0]);
-				line[0][i] = '\0';
-				if ((i + 1) % BUFF_SIZE != 0)
-					addfile(fd, line, files);
-				return (1);
-			}
-			i++;
+			line[0][i] = '\0';
+			//ft_putendl("bl");
+			return (1);
 		}
-		if (i % BUFF_SIZE == 0)
+		i++;
+		if (size == i)
+		{
+			//ft_putendl(*line);
+			//ft_putstr(" size == i = ");
+			//ft_putnbr(i);
+			//ft_putendl("");
 			line[0] = ft_realloc(line[0]);
+			size += i;
+			//ft_putendl(*line);
+
+		}
+		//write(1, "4\n", 2);
 	}
 	line[0][i] = '\0';
-	return (0);
+	printf("finish ret = %d\n", ret);
+	return (1);
 }
 
 int		main(int ac, char **av)
@@ -94,12 +79,18 @@ int		main(int ac, char **av)
 	{
 		fd = open(av[1], O_RDONLY);
 		res = get_next_line(fd, &str);
-		ft_putendl("out1:");
+		//printf("res in main = %d\n", res);
 		ft_putendl(str);
-		ft_putendl("out2:");
 		res = get_next_line(fd, &str);
 		ft_putendl(str);
+		// res = get_next_line(fd, &str);
+		// ft_putendl(str);
+		// res = get_next_line(fd, &str);
+		// ft_putendl(str);
+		// res = get_next_line(fd, &str);
+		// ft_putendl(str);
 		close(fd);
 	}
+
 	return (0);
 }
