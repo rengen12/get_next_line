@@ -6,7 +6,7 @@
 #    By: amichak <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/11 13:15:45 by amichak           #+#    #+#              #
-#    Updated: 2017/11/11 13:23:54 by amichak          ###   ########.fr        #
+#    Updated: 2017/11/15 19:41:01 by amichak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ $(NAME):			$(OBJ)
 	
 $(OBJFOLD)%.o: %.c
 	@mkdir -p $(OBJFOLD)
-	@$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
+	$(CC) $(CFLAGS) $(HEADER) -c $< -o $@
 
 clean:
 	@rm -rf $(OBJFOLD)
