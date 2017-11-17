@@ -1,3 +1,7 @@
+#include "../libft/libft.h"
+#include <fcntl.h>
+#include "../get_next_line.h"
+
 int		main(int ac, char **av)
 {
 	int fd, fd1, fd2, to_check, check_origin;
@@ -29,6 +33,15 @@ int		main(int ac, char **av)
 	a[6] = '\0';
 	b[6] = '\0';
 	c[6] = '\0';*/
+    if (ac == 1)
+    {
+        fd = open("test8chars", O_RDONLY);
+        res = get_next_line(fd, &str);
+        ft_putstr("res = ");
+        ft_putnbr(res);
+        ft_putendl("");
+        ft_putendl(str);
+    }
 	if (ac >= 2)
 	{
 		fd = open(av[1], O_RDONLY);

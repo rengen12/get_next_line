@@ -2,22 +2,22 @@
 1_call:
 file1 | out1:
 res = 1
-12345000000000000000000000000000000
+12345000
 
 2_call:
 file2 | out2:
 res = 1
-zxcvbnzzzzzzzzxcvbnzzzzzzzzxcvbnzzzzzzzzxcvbnzzzzzzzzxcvbnzzzzzzz
+zxcvbnzz
 
 3_call:
 file1 | out3:
 res = 1
-1111
+00000000
 
 4_call:
 file2 | out4:
 res = 1
-qwertyuiop10
+zzzzzzxc
 
 5_call:
 file3 | out5:
@@ -42,37 +42,37 @@ res = -1
 9_call:
 file1 | out9:
 res = 1
-32
+00000000
 
 10_call:
 file1 | out10:
 res = 1
-1
+00000000
 
 11_call:
 file2(last) | out11:
 res = 1
-.
+vbnzzzzz
 
 12_call:
 file1(last) | out12:
-res = 0
-asdfghjkl;zxcvbnm,./wertyuiopsdfghjshfjdgjsdhfffffffffffffffffffffffffffffffffffffffffffsgshf sd dhdtdt @#$%^&*()klxcvbnmllllllllllll1111asdfghjkl;zxcvbnm,./wertyuiopsdfghjklxcvbn
+res = 1
+000
 
 13_call:
 file2(nothing) | out13:
-res = 0
-
+res = 1
+zzzxcvbn
 
 14_call:
 file1(nothing) | out14:
-res = 0
-
+res = 1
+1111
 
 15_call:
 file1(nothing) | out15:
-res = 0
-
+res = 1
+32
 
 16_call:
 file3 | out16:
@@ -92,56 +92,56 @@ res = 1
 19_call:
 file3 | out19:
 res = 1
-7777777$
+8$
 
 20_call:
 file3 | out20:
 res = 1
-8888888$
+99999999$
 
 21_call:
 file3 | out21:
 res = 1
-99999999$
+000000000$
 
 22_call:
 file3 | out22:
 res = 1
-000000000$
+
 
 23_call:
 file3 | out23:
 res = 1
-111111111111111111111111111111111111111111111111111
+
 
 24_call:
 file3 | out24:
 res = 1
-2222222222222222222222222222222222222222222222222222222222222
+
 
 25_call:
 file3 | out25:
-res = 0
-333333333333333333333333333333333333333333333333333333333333333333333
+res = 1
+
 
 26_call:
 file1 over | out26:
-res = 0
+res = 1
 
 
 27_call:
 file2 over1 | out27:
-res = 0
-
+res = 1
+zzzzzzzz
 
 28_call:
 file3 over2 | out28:
-res = 0
+res = 1
 
 
 29_call:
 file1 closed | out29:
-res = -1
+res = 1
 
 
 30_call:
@@ -151,5 +151,5 @@ res = -1
 
 31_call:
 file3 closed | out31:
-res = -1
-
+res = 1
+11111111111111111111111111111111111
