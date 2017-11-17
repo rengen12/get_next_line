@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 # include <fcntl.h>
 # include "libft/libft.h"
-# define BUFF_SIZE 8
+# define BUFF_SIZE 15
 
 typedef struct	s_nxtl
 {
