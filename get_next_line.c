@@ -99,7 +99,7 @@ int		get_next_line(const int fd, char **line)
 			if (line[0][i] == '\n')
 			{
 				line[0][i] = '\0';
-				if (((i + 1) % BUFF_SIZE) != 0)
+				if (i < ret + oldi)
 					addfile(fd, *line, &files);
 				return (1);
 			}
