@@ -1,0 +1,155 @@
+
+1_call:
+file1 | out1:
+res = 1
+12345000000000000000000000000000000
+
+2_call:
+file2 | out2:
+res = 1
+zxcvbnzzzzzzzzxcvbnzzzzzzzzxcvbnzzzzzzzzxcvbnzzzzzzzzxcvbnzzzzzzz
+
+3_call:
+file1 | out3:
+res = 1
+1111
+
+4_call:
+file2 | out4:
+res = 1
+qwertyuiop10
+
+5_call:
+file3 | out5:
+res = 1
+1$
+
+6_call:
+file3 | out6:
+res = 1
+22$
+
+7_call:
+file3 | out7:
+res = 1
+333$
+
+8_call:
+file wrong | out8:
+res = -1
+
+
+9_call:
+file1 | out9:
+res = 1
+3
+
+10_call:
+file1 (LF) | out10:
+res = 1
+
+
+11_call:
+file2(LF) | out11:
+res = 1
+
+
+12_call:
+file1(last) | out12:
+res = 1
+asdfghjkl;zxcvbnm,./wertyuiopsdfghjshfjdgjsdhfffffffffffffffffffffffffffffffffffffffffffsgshfsddhdtdt@#$%^&*().klxcvbnmllllllllllll1111asdfghjkl;zxcvbnm,./wertyuiopsdfghjklxcvbn
+
+13_call:
+file2(last) | out13:
+res = 1
+.
+
+14_call:
+file1(nothing) | out14:
+res = 0
+
+
+15_call:
+file2(line feed) | out15:
+res = 1
+
+
+16_call:
+file3 | out16:
+res = 1
+4444$
+
+17_call:
+file3 | out17:
+res = 1
+55555$
+
+18_call:
+file3 | out18:
+res = 1
+666666$
+
+19_call:
+file3 | out19:
+res = 1
+88$
+
+20_call:
+file3 | out20:
+res = 1
+999999999$
+
+21_call:
+file3 | out21:
+res = 1
+0000000000$
+
+22_call:
+file3 | out22:
+res = 1
+
+
+23_call:
+file3 (line feed) | out23:
+res = 1
+
+
+24_call:
+file3 (line feed) | out24:
+res = 1
+333333333333333333333333333333333333333333333333333333333333333333333
+
+25_call:
+file3 (last) | out25:
+res = 0
+
+
+26_call:
+file1 over | out26:
+res = 0
+
+
+27_call:
+file2 (line feed)) | out27:
+res = 1
+
+
+28_call:
+file3 over2 | out28:
+res = 0
+
+
+29_call:
+file1 closed | out29:
+res = -1
+
+
+30_call:
+file2 closed | out30:
+res = 1
+
+
+31_call:
+file3 closed | out31:
+res = -1
+

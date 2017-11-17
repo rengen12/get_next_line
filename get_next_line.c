@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rengen <rengen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amichak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/11 17:29:24 by amichak           #+#    #+#             */
-/*   Updated: 2017/11/17 11:37:54 by rengen           ###   ########.fr       */
+/*   Created: 2017/11/17 16:51:06 by amichak           #+#    #+#             */
+/*   Updated: 2017/11/17 16:51:08 by amichak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft/libft.h"
 
 char	*ft_realloc(char *str)
 {
@@ -33,7 +32,7 @@ void	addfile(int fd, char *line, t_list **files)
 	size_t	size;
 	t_list	*tmp;
 
-	if(*files)
+	if (*files)
 	{
 		tmp = *files;
 		while (tmp->next && (int)tmp->content_size != fd)
@@ -55,7 +54,7 @@ void	addfile(int fd, char *line, t_list **files)
 	tmp->content = ft_strsub(line, size, ft_strlen(line + size));
 }
 
-int		handle_files(t_list	*files, int fd, size_t *oldi, char **line)
+int		handle_files(t_list *files, int fd, size_t *oldi, char **line)
 {
 	t_list			*file;
 	size_t			i;
@@ -87,9 +86,9 @@ int		get_next_line(const int fd, char **line)
 {
 	long long		i;
 	static t_list	*files;
-	int 			ret;
-	size_t 			oldi;
-	
+	int				ret;
+	size_t			oldi;
+
 	if (!line || fd < 0 || (i = handle_files(files, fd, &oldi, line)) == -1)
 		return (-1);
 	while ((((ret = read(fd, &line[0][i], BUFF_SIZE)) > 0) || oldi) && *line)
@@ -101,12 +100,12 @@ int		get_next_line(const int fd, char **line)
 			{
 				line[0][i] = '\0';
 				if (((i + 1) % BUFF_SIZE) != 0)
-					addfile(fd, *line, &files); 
-				return (1);   
+					addfile(fd, *line, &files);
+				return (1);
 			}
 			else if ((i++ % (BUFF_SIZE + oldi)) == 0)
 				*line = ft_realloc(*line);
 		oldi = 0;
 	}
-	return((i > 0) ? 1 : ret);
+	return ((i > 0) ? 1 : ret);
 }
