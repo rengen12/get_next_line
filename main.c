@@ -1,4 +1,5 @@
 #include "get_next_line.h"
+#include <stdio.h>
 
 int		main(int ac, char **av)
 {
@@ -11,7 +12,11 @@ int		main(int ac, char **av)
     
     if (ac == 1)
     {
-        get_next_line(0, &str);
+        ret = get_next_line(0, &str);
+        ft_putstr("res = ");
+        ft_putnbr(res);
+        ft_putendl("");
+        ft_putendl(str);
     }
 	if (ac >= 2)
 	{
@@ -312,8 +317,16 @@ int		main(int ac, char **av)
 
         close(to_check);
 
-        to_check = open("test_to_check", O_RDONLY);
-        check_origin = open("check_origin", O_RDONLY);
+        if ((to_check = open("test_to_check", O_RDONLY)) < 0)
+        {
+            ft_putendl("error in open");
+            return (1);
+        }
+        if ((check_origin = open("check_origin", O_RDONLY)) < 0)
+        {
+            ft_putendl("error in open");
+            return (1);
+        }
         ret = read(to_check, a, 20000);
         a[ret] = '\0';
         ret = read(check_origin, b, 20000);
@@ -324,6 +337,9 @@ int		main(int ac, char **av)
         else
             ft_putendl("ERROR!");
 
+        //int i = 0;
+
+        //printf("char = %c, r = %d", a[i], strcmp(&a[i], &b[i]));
 
         close(to_check);
         close(check_origin);
