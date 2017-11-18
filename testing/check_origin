@@ -38,7 +38,6 @@ res = 1
 file wrong | out8:
 res = -1
 
-
 9_call:
 file1 | out9:
 res = 1
@@ -143,13 +142,10 @@ res = 0
 file1 closed | out29:
 res = -1
 
-
 30_call:
 file2 closed | out30:
 res = -1
 
-
 31_call:
 file3 closed | out31:
 res = -1
-

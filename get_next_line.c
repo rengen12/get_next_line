@@ -86,7 +86,7 @@ int		get_next_line(const int fd, char **line)
 {
 	long long		i;
 	static t_list	*files;
-	int				ret;
+	long long		ret;
 	size_t			oldi;
 
 	if (!line || fd < 0 || (i = handle_files(files, fd, &oldi, line)) == -1)
@@ -95,17 +95,18 @@ int		get_next_line(const int fd, char **line)
 	{
 		oldi = i;
 		i = 0;
-		while (line[0][i] != '\0')
+		while (line[0][i] != '\0' && ret != -1)
 			if (line[0][i] == '\n')
 			{
 				line[0][i] = '\0';
-				if (i < ret + oldi)
+				if ((size_t)i < ret + oldi)
 					addfile(fd, *line, &files);
 				return (1);
 			}
-			else if ((i++ % (BUFF_SIZE + oldi)) == 0)
+			else if ((++i % (BUFF_SIZE + oldi)) == 0)
 				*line = ft_realloc(*line);
 		oldi = 0;
 	}
-	return ((i > 0) ? 1 : ret);
+    ft_strdel((ret == -1) ? line : NULL);
+	return ((i > 0 && ret != -1) ? 1 : ret);
 }

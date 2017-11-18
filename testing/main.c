@@ -9,18 +9,20 @@ int		main(int ac, char **av)
     char a[32000];
     char b[32000];
     int ret;
-    
+    ft_putstr("buff_size: ");
+    ft_putnbr(BUFF_SIZE);
+    ft_putendl("");
     if (ac == 1)
     {
-        ret = get_next_line(0, &str);
+        res = get_next_line(0, &str);
         ft_putstr("res = ");
         ft_putnbr(res);
         ft_putendl("");
         ft_putendl(str);
     }
-    if (ac == 2) {
-
-        if ((to_check = open("test_bigfat", O_TRUNC | O_WRONLY | O_CREAT, 0777)) < 0) {
+    if (ac == 2)
+    {
+        if ((to_check = open("file", O_TRUNC | O_WRONLY | O_CREAT, 0777)) < 0) {
             ft_putendl("error in open");
             return (1);
         }
@@ -34,14 +36,73 @@ int		main(int ac, char **av)
         ft_putstr_fd(str, to_check);
 
         close(to_check);
-        if ((to_check = open("test_to_check", O_RDONLY)) < 0) {
+        close(check_origin);
+        if ((to_check = open("file", O_RDONLY)) < 0) {
+            ft_putendl("error in open");
+            return (1);
+        }
+        if ((check_origin = open(av[1], O_RDONLY)) < 0) {
             ft_putendl("error in open");
             return (1);
         }
 
-        ret = read(to_check, a, 32000);
+        ret = read(check_origin, a, 100);
         a[ret] = '\0';
-        ret = read(check_origin, b, 32000);
+        ret = read(to_check, b, 100);
+        b[ret] = '\0';
+
+        /* if (strcmp(a, b) == 0)
+             ft_putendl("OK!");
+         else
+             ft_putendl("ERROR!");
+         */
+        /* int i = 0;
+         while (i < 30002){
+             res = a[i] - b[i];
+             if (res != 0)
+                 printf("char# = %d, r = %d\n", i, res);
+             i++;
+          }*/
+        int i = 0;
+        while (i < 100) {
+            res = a[i] - b[i];
+            if (res != 0)
+                printf("char1 = %c, char2 = %c, i = %d\n", a[i], b[i], i);
+            i++;
+        }
+        printf("end\n");
+        close(to_check);
+        close(check_origin);
+    }
+    if (ac == 3) {
+
+        if ((to_check = open(av[1], O_TRUNC | O_WRONLY | O_CREAT, 0777)) < 0) {
+            ft_putendl("error in open");
+            return (1);
+        }
+        if ((check_origin = open(av[2], O_RDONLY)) < 0) {
+            ft_putendl("error in open");
+            return (1);
+        }
+
+        ret = get_next_line(check_origin, &str);
+        ft_putnbr(ret);
+        ft_putstr_fd(str, to_check);
+
+        close(to_check);
+        close(check_origin);
+        if ((to_check = open(av[1], O_RDONLY)) < 0) {
+            ft_putendl("error in open");
+            return (1);
+        }
+        if ((check_origin = open(av[2], O_RDONLY)) < 0) {
+            ft_putendl("error in open");
+            return (1);
+        }
+
+        ret = read(check_origin, a, 32000);
+        a[ret] = '\0';
+        ret = read(to_check, b, 32000);
         b[ret] = '\0';
 
        /* if (strcmp(a, b) == 0)
@@ -49,18 +110,25 @@ int		main(int ac, char **av)
         else
             ft_putendl("ERROR!");
         */
-        int i = 0;
+       /* int i = 0;
         while (i < 30002){
             res = a[i] - b[i];
             if (res != 0)
                 printf("char# = %d, r = %d\n", i, res);
             i++;
-         }
-
+         }*/
+        int i = 0;
+        while (i < 30002) {
+            res = a[i] - b[i];
+            if (res != 0)
+                printf("char1 = %c, char2 = %c, i = %d\n", a[i], b[i], i);
+            i++;
+        }
+        printf("end\n");
         close(to_check);
         close(check_origin);
     }
-	if (ac == 4)
+	if (ac == 5)
 	{
 		fd = open(av[1], O_RDONLY);
 		fd1 = open(av[2], O_RDONLY);
@@ -379,10 +447,68 @@ int		main(int ac, char **av)
         else
             ft_putendl("ERROR!");
 
-        //int i = 0;
+        ft_putendl(">>>>>>>>>start check main output");
+        int i = 0;
+        while (i < 1600){
+            res = a[i] - b[i];
+            if (res != 0)
+                printf("char1 = %c, char2 = %c, i = %d\n", a[i], b[i], i);
+            i++;
+        }
+        ft_putendl(">>>>>>>>>end check main output");
+        close(to_check);
+        close(check_origin);
+        if ((to_check = open("test_bigfat", O_TRUNC | O_WRONLY | O_CREAT, 0777)) < 0) {
+            ft_putendl("error in open");
+            return (1);
+        }
+        if ((check_origin = open("one_big_fat_line", O_RDONLY)) < 0) {
+            ft_putendl("error in open");
+            return (1);
+        }
 
-        //printf("char = %c, r = %d", a[i], strcmp(&a[i], &b[i]));
+        ret = get_next_line(check_origin, &str);
+        ft_putstr("ret = ");
+        ft_putnbr(ret);
+        ft_putendl("");
+        ft_putstr_fd(str, to_check);
 
+        close(to_check);
+        close(check_origin);
+        if ((to_check = open("test_bigfat", O_RDONLY)) < 0) {
+            ft_putendl("error in open");
+            return (1);
+        }
+        if ((check_origin = open("one_big_fat_line", O_RDONLY)) < 0) {
+            ft_putendl("error in open");
+            return (1);
+        }
+        ft_putendl(">>>>>>>>>start check main big file");
+        ret = read(check_origin, a, 32000);
+        a[ret] = '\0';
+        ret = read(to_check, b, 32000);
+        b[ret] = '\0';
+        ft_putendl(">>>>>>>>>end check main big file");
+        /* if (strcmp(a, b) == 0)
+             ft_putendl("OK!");
+         else
+             ft_putendl("ERROR!");
+         */
+        /* int i = 0;
+         while (i < 30002){
+             res = a[i] - b[i];
+             if (res != 0)
+                 printf("char# = %d, r = %d\n", i, res);
+             i++;
+          }*/
+        i = 0;
+        while (i < 30002) {
+            res = a[i] - b[i];
+            if (res != 0)
+                printf("char1 = %c, char2 = %c, i = %d\n", a[i], b[i], i);
+            i++;
+        }
+        printf("end\n");
         close(to_check);
         close(check_origin);
 
