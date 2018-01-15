@@ -6,7 +6,7 @@
 /*   By: amichak <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 16:51:06 by amichak           #+#    #+#             */
-/*   Updated: 2017/11/20 22:18:27 by amichak          ###   ########.fr       */
+/*   Updated: 2018/01/15 18:04:24 by amichak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int		get_next_line(const int fd, char **line)
 
 	if (!line || fd < 0 || (i = handle_files(files, fd, &f, line)) == -1)
 		return (-1);
-	while (((ret = read(fd, &line[0][i], BUFF_SIZE)) > 0) || f)
+	while (*line && (((ret = read(fd, &line[0][i], BUFF_SIZE)) > 0) || f))
 	{
 		oldi = i;
 		ft_doit(&f, &i);
